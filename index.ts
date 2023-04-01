@@ -1,5 +1,6 @@
 import { Client, Message, TextChannel } from 'discord.js-selfbot-v13';
 import dotenv from 'dotenv';
+
 dotenv.config();
 
 const token: string = process.env.TOKEN || '';
@@ -49,8 +50,9 @@ client.on('messageCreate', async (message: Message) => {
     const messagesToDelete: Message[] = await lots_of_messages_getter(message.channel.id);
 
     for (const message of messagesToDelete) {
+        console.log(`Mensagem no chat: ${message.content}, enviada por: ${message.author}.`);
         if (message.deletable) {
-            console.log(message.content);
+            console.log(`Mensagem deletada: ${message.content}, enviada por: ${message.author}.`);
             await message.delete();
         }
     }
